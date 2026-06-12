@@ -1,0 +1,9 @@
+# ============================================================
+# originals/.gitignore — Don't track user backup files
+# Credit: abdullah al mamun (@A2MBD3)
+# ============================================================
+# Ignore everything in this directory
+*
+
+# Except this gitignore file itself
+!.gitignore

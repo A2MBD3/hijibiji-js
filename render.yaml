@@ -1,0 +1,44 @@
+# ============================================================
+# Render Blueprint — JavaScript Obfuscator Telegram Bot
+# Credit: abdullah al mamun (@A2MBD3)
+# ============================================================
+# Deploy on Render: https://render.com
+#
+# Instructions:
+# 1. Push this repo to GitHub/GitLab
+# 2. Go to https://dashboard.render.com/blueprints
+# 3. Click "New Blueprint Instance" and connect your repo
+# 4. Add your BOT_TOKEN secret when prompted
+# 5. Click "Apply" — Render will build and deploy automatically
+
+services:
+  # ── Background Worker (Telegram Polling Bot) ──
+  #
+  # FIX: Changed from type:web to type:worker for two reasons:
+  #  1. Render's free plan for web services was sunset in Nov 2024 — free
+  #     workers are still available (same 750 hrs/month).
+  #  2. A Telegram polling bot is a daemon (no inbound HTTP needed), so a
+  #     background worker is the semantically correct service type. Workers
+  #     run 24/7 without spin-down — better for a persistent bot.
+  #
+  # FIX: Removed dockerContext field — it was causing Render's Docker builder
+  # to resolve the Dockerfile path incorrectly, producing:
+  #   "failed to read dockerfile: open Dockerfile: no such file or directory"
+  # The default context (repo root) is correct for this project.
+  - type: worker
+    name: hijibiji-js
+    env: docker
+    region: singapore
+    plan: free
+    branch: main
+    autoDeploy: true
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: BOT_TOKEN
+        sync: false    # You will be prompted to enter this securely
+      - key: OWNER_ID
+        value: "8074495633"
+      - key: PORT
+        value: "10000"
+      - key: NODE_ENV
+        value: production

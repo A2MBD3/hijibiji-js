@@ -1,0 +1,27 @@
+{
+  "name": "javascript-obfuscator-telegram-bot",
+  "version": "1.0.0",
+  "description": "A Telegram bot that obfuscates JavaScript code using javascript-obfuscator — Credit: abdullah al mamun (@A2MBD3)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "javascript",
+    "obfuscator",
+    "obfuscation"
+  ],
+  "author": "abdullah al mamun (@A2MBD3)",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "javascript-obfuscator": "^4.1.0",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
